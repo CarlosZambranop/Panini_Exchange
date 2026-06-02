@@ -1,0 +1,105 @@
+<app-navbar />
+
+<main class="register-page">
+  <div class="register-layout">
+
+    <!-- Left panel — branding -->
+    <aside class="side-panel">
+      <div class="side-content">
+        <mat-icon class="side-icon">style</mat-icon>
+        <h2>Únete a PaniniXchange</h2>
+        <p>Regístrate para intercambiar y coleccionar estampas digitales.</p>
+        <ul class="side-perks">
+          <li><mat-icon>check_circle</mat-icon> Accede a tu álbum digital</li>
+          <li><mat-icon>check_circle</mat-icon> Intercambia estampas fácilmente</li>
+          <li><mat-icon>check_circle</mat-icon> Guarda tu progreso seguro</li>
+          <li><mat-icon>check_circle</mat-icon> Conéctate con otros coleccionistas</li>
+        </ul>
+        <div class="edu-notice">
+          <mat-icon>school</mat-icon>
+          <p>No compartas datos sensibles y respeta las condiciones de uso.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right panel — form -->
+    <section class="form-panel">
+      <div class="form-box">
+
+        <h1>Registrarse</h1>
+        <p class="form-subtitle">Crea tu perfil de intercambio en minutos.</p>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+          <!-- Full name -->
+          <mat-form-field appearance="outline" class="fw">
+            <mat-label>Nombre completo</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput formControlName="fullName"
+                   placeholder="Ingresa tu nombre completo" maxlength="150" />
+            @if (isInvalid('fullName')) {
+              <mat-error>
+                @if (f['fullName'].errors?.['required']) { El nombre es obligatorio. }
+                @else if (f['fullName'].errors?.['minlength']) { El nombre debe tener al menos 3 caracteres. }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field appearance="outline" class="fw">
+            <mat-label>Correo electrónico</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput formControlName="email" type="email"
+                   placeholder="ejemplo@correo.com" />
+            @if (isInvalid('email')) {
+              <mat-error>
+                @if (f['email'].errors?.['required']) { El correo es obligatorio. }
+                @else { Ingresa un correo válido. }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Phone + City -->
+          <div class="two-col">
+            <mat-form-field appearance="outline" class="fw">
+              <mat-label>Teléfono</mat-label>
+              <mat-icon matPrefix>phone</mat-icon>
+              <input matInput formControlName="phone"
+                     placeholder="Ingresa tu teléfono" maxlength="20" />
+              @if (isInvalid('phone')) {
+                <mat-error>El teléfono es obligatorio y debe ser válido.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fw">
+              <mat-label>Ciudad</mat-label>
+              <mat-icon matPrefix>location_city</mat-icon>
+              <input matInput formControlName="city"
+                     placeholder="Ingresa tu ciudad" maxlength="100" />
+              @if (isInvalid('city')) {
+                <mat-error>La ciudad es obligatoria.</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <!-- Submit -->
+          <button mat-flat-button type="submit" class="submit-btn" [disabled]="isLoading">
+            @if (isLoading) {
+              <mat-spinner diameter="20" strokeWidth="3" />
+              <span>Registrando...</span>
+            } @else {
+              <ng-container>
+                <mat-icon>how_to_reg</mat-icon>
+                <span>Registrarse</span>
+              </ng-container>
+            }
+          </button>
+
+        </form>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<app-footer />

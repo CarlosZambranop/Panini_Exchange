@@ -1,0 +1,229 @@
+.sticker-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.28s ease,
+              border-color 0.28s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.sticker-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 213, 79, 0.35);
+}
+
+/* ── Banner ─────────────────────────────────────────────────────────── */
+.card-banner {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.sticker-card:hover .player-img {
+  transform: scale(1.05);
+}
+
+.card-number {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.card-emoji {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* Holographic shimmer for Epic/Legend */
+.shimmer-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Rarity band ─────────────────────────────────────────────────────── */
+.rarity-band {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.rarity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+.rarity-text {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Body ────────────────────────────────────────────────────────────── */
+.card-body {
+  padding: 14px 16px 10px;
+  flex: 1;
+}
+
+.player-name {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+}
+.meta-row mat-icon {
+  font-size: 14px;
+  height: 14px;
+  width: 14px;
+  color: rgba(255, 255, 255, 0.3);
+}
+.flag { font-size: 0.9rem; }
+
+/* ── Owner count ─────────────────────────────────────────────────────── */
+.owner-count {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 213, 79, 0.1);
+  border: 1px solid rgba(255, 213, 79, 0.25);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: rgba(255, 213, 79, 0.85);
+  font-size: 0.82rem;
+}
+.owner-count mat-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #ffd54f;
+}
+.owner-count strong { color: #ffd54f; font-size: 1rem; }
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+.card-footer {
+  display: block;
+  padding: 10px 14px 14px;
+}
+
+.btn-owners {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 36px;
+  transition: border-color 0.2s, color 0.2s !important;
+}
+.btn-owners mat-icon { font-size: 15px; height: 15px; width: 15px; }
+.btn-owners:hover {
+  border-color: rgba(255, 213, 79, 0.5) !important;
+  color: #ffd54f !important;
+}
+
+.btn-want {
+  background: linear-gradient(90deg, #7c4dff, #e040fb) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 3px 12px rgba(224, 64, 251, 0.3) !important;
+  transition: box-shadow 0.2s, transform 0.2s !important;
+}
+.btn-want mat-icon { font-size: 15px; height: 15px; width: 15px; }
+.sticker-card:hover .btn-want {
+  box-shadow: 0 5px 18px rgba(224, 64, 251, 0.55) !important;
+}
+
+.btn-trade {
+  width: 100%;
+  background: linear-gradient(90deg, #7c4dff, #e040fb) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 3px 12px rgba(224, 64, 251, 0.3) !important;
+  transition: box-shadow 0.2s, transform 0.2s !important;
+}
+
+.btn-trade mat-icon { font-size: 16px; height: 16px; width: 16px; }
+
+.sticker-card:hover .btn-trade {
+  box-shadow: 0 5px 18px rgba(224, 64, 251, 0.55) !important;
+}

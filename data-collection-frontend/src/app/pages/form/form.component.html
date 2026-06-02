@@ -1,0 +1,137 @@
+<app-navbar />
+
+<main class="form-page">
+  <div class="form-container">
+
+    <!-- Header -->
+    <div class="form-header">
+      <div class="header-icon"><mat-icon>album</mat-icon></div>
+      <h1>Registro de Coleccionista</h1>
+      <p>Completa el formulario para aparecer en el tablero de intercambio.</p>
+    </div>
+
+    <!-- Error Alert -->
+    @if (errorMessage) {
+      <div class="alert alert-error" role="alert">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+    }
+
+    <!-- Form -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+
+      <!-- Full Name -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre completo</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput formControlName="fullName" placeholder="Ej. Carlos Lopez" maxlength="150" />
+        @if (isInvalid('fullName')) {
+          <mat-error>
+            @if (f['fullName'].errors?.['required']) { El nombre es obligatorio. }
+            @else if (f['fullName'].errors?.['minlength']) { Minimo 3 caracteres. }
+            @else if (f['fullName'].errors?.['maxlength']) { Maximo 150 caracteres. }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo electronico</mat-label>
+        <mat-icon matPrefix>email</mat-icon>
+        <input matInput formControlName="email" type="email" placeholder="correo@ejemplo.com" maxlength="200" />
+        @if (isInvalid('email')) {
+          <mat-error>
+            @if (f['email'].errors?.['required']) { El correo es obligatorio. }
+            @else if (f['email'].errors?.['email']) { Ingresa un correo valido. }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Phone + City -->
+      <div class="two-col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Telefono</mat-label>
+          <mat-icon matPrefix>phone</mat-icon>
+          <input matInput formControlName="phone" placeholder="+57 300 123 4567" maxlength="20" />
+          @if (isInvalid('phone')) {
+            <mat-error>
+              @if (f['phone'].errors?.['required']) { El telefono es obligatorio. }
+              @else { Formato de telefono invalido. }
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Ciudad</mat-label>
+          <mat-icon matPrefix>location_city</mat-icon>
+          <input matInput formControlName="city" placeholder="Ej. Bogota" maxlength="100" />
+          @if (isInvalid('city')) {
+            <mat-error>La ciudad es obligatoria.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Sticker Count + Favorite Album -->
+      <div class="two-col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Numero de estampas</mat-label>
+          <mat-icon matPrefix>collections</mat-icon>
+          <input matInput formControlName="stickerCount" type="number" min="0" placeholder="Ej. 120" />
+          @if (isInvalid('stickerCount')) {
+            <mat-error>
+              @if (f['stickerCount'].errors?.['required']) { Campo obligatorio. }
+              @else if (f['stickerCount'].errors?.['min']) { Debe ser 0 o mas. }
+              @else { Maximo 100.000. }
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Album favorito (opcional)</mat-label>
+          <mat-icon matPrefix>bookmark</mat-icon>
+          <input matInput formControlName="favoriteAlbum" placeholder="Ej. Mundial Qatar 2022" maxlength="150" />
+        </mat-form-field>
+      </div>
+
+      <!-- Privacy Checkbox -->
+      <div class="privacy-box" [class.privacy-error]="isInvalid('privacyPolicyAccepted')">
+        <mat-checkbox formControlName="privacyPolicyAccepted" color="primary">
+          He leido y acepto la
+          <a routerLink="/politica-privacidad" target="_blank" class="privacy-link">
+            Politica de Privacidad
+          </a>
+          conforme a la <strong>Ley 1581 de 2012</strong> de Colombia.
+        </mat-checkbox>
+        @if (isInvalid('privacyPolicyAccepted')) {
+          <p class="checkbox-error">
+            <mat-icon>warning_amber</mat-icon>
+            Debes aceptar la politica de privacidad para continuar.
+          </p>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        type="submit"
+        class="submit-btn"
+        [disabled]="isLoading || f['privacyPolicyAccepted'].value === false">
+        @if (isLoading) {
+          <ng-container>
+            <mat-spinner diameter="22" strokeWidth="3" />
+            <span>Registrando...</span>
+          </ng-container>
+        } @else {
+          <ng-container>
+            <mat-icon>how_to_reg</mat-icon>
+            <span>Unirme al tablero</span>
+          </ng-container>
+        }
+      </button>
+
+    </form>
+  </div>
+</main>
+
+<app-footer />

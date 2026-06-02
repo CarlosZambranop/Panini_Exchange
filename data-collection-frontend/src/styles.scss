@@ -1,0 +1,41 @@
+// ─── Angular Material dark theme ──────────────────────────────────────────
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: dark,
+      primary: mat.$violet-palette,
+      tertiary: mat.$cyan-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+// ─── Global resets ────────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Inter', sans-serif;
+  background: #0d0d1a;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+// ─── Custom scrollbar ─────────────────────────────────────────────────────
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d0d1a; }
+::-webkit-scrollbar-thumb { background: #7c4dff; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9c6dff; }
+
+// ─── Snackbar theme overrides ─────────────────────────────────────────────
+.snack-success .mdc-snackbar__surface { background: #1a3a2a !important; }
+.snack-error   .mdc-snackbar__surface { background: #3a1a1a !important; }

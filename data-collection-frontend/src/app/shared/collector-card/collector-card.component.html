@@ -1,0 +1,45 @@
+<div class="card" matRipple>
+
+  <!-- Header strip with level color -->
+  <div class="card-header" [style.background]="levelColor + '22'">
+    <div class="avatar">
+      {{ collector.displayName.charAt(0).toUpperCase() }}
+    </div>
+    <div class="badge" [style.background]="levelColor + '33'" [style.color]="levelColor">
+      <mat-icon>{{ levelIcon }}</mat-icon>
+      <span>{{ level }}</span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+    <h3 class="name">{{ collector.displayName }}</h3>
+
+    <div class="meta">
+      <span class="meta-item">
+        <mat-icon>location_on</mat-icon>
+        {{ collector.city }}
+      </span>
+      <span class="meta-item sticker-count">
+        <mat-icon>collections</mat-icon>
+        {{ collector.stickerCount }} estampas
+      </span>
+    </div>
+
+    @if (collector.favoriteAlbum) {
+      <div class="album-tag">
+        <mat-icon>bookmark</mat-icon>
+        {{ collector.favoriteAlbum }}
+      </div>
+    }
+  </div>
+
+  <!-- Footer action -->
+  <div class="card-footer">
+    <button mat-flat-button class="exchange-btn" (click)="onProposeExchange()">
+      <mat-icon>swap_horiz</mat-icon>
+      Proponer intercambio
+    </button>
+  </div>
+
+</div>

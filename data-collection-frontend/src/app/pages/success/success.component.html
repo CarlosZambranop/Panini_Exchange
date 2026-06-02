@@ -1,0 +1,39 @@
+<app-navbar />
+
+<main class="success-page">
+  <div class="success-card">
+
+    <div class="check-ring">
+      <div class="check-circle">
+        <mat-icon>check</mat-icon>
+      </div>
+    </div>
+
+    <h1>¡Registro Exitoso!</h1>
+    <p>Tus datos han sido recibidos y almacenados de forma segura conforme a la <strong>Ley 1581 de 2012</strong>.</p>
+
+    <div class="info-pills">
+      <span class="pill">
+        <mat-icon>security</mat-icon> Datos cifrados
+      </span>
+      <span class="pill">
+        <mat-icon>verified</mat-icon> Confirmado
+      </span>
+      <span class="pill">
+        <mat-icon>schedule</mat-icon> {{ today | date:'medium' }}
+      </span>
+    </div>
+
+    <div class="actions">
+      <a mat-raised-button routerLink="/" class="btn-primary">
+        <mat-icon>home</mat-icon> Volver al inicio
+      </a>
+      <a mat-stroked-button routerLink="/registro" class="btn-secondary">
+        <mat-icon>add</mat-icon> Nuevo registro
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<app-footer />

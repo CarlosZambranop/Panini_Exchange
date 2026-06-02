@@ -1,0 +1,63 @@
+<div class="sticker-card" matRipple [matRippleColor]="'rgba(255,213,79,0.08)'">
+
+  <!-- Card banner -->
+  <div class="card-banner" [style.background]="rarityGradient[sticker.rarity]">
+    <span class="card-number">#{{ stickerNumber }}</span>
+
+    @if (sticker.imageUrl) {
+      <img class="player-img" [src]="sticker.imageUrl" [alt]="sticker.playerName"
+           loading="lazy" (error)="playerImgEl.style.display='none'" #playerImgEl />
+    } @else {
+      <div class="card-emoji">⚽</div>
+    }
+
+    @if (sticker.rarity === 'Legend' || sticker.rarity === 'Epic') {
+      <div class="shimmer-overlay"></div>
+    }
+  </div>
+
+  <!-- Rarity badge -->
+  <div class="rarity-band"
+       [style.background]="rarityColor[sticker.rarity] + '22'"
+       [style.border-color]="rarityColor[sticker.rarity] + '55'">
+    <span class="rarity-dot" [style.background]="rarityColor[sticker.rarity]"></span>
+    <span class="rarity-text" [style.color]="rarityColor[sticker.rarity]">
+      {{ sticker.rarity }}
+    </span>
+  </div>
+
+  <!-- Card body -->
+  <div class="card-body">
+    <h3 class="player-name">{{ sticker.playerName }}</h3>
+
+    <div class="card-meta">
+      <span class="meta-row">
+        <mat-icon>shield</mat-icon>{{ sticker.team }}
+      </span>
+      <span class="meta-row">
+        <mat-icon>sports_soccer</mat-icon>{{ sticker.position }}
+      </span>
+      <span class="meta-row">
+        <span class="flag">{{ sticker.flag }}</span>{{ sticker.nationality }}
+      </span>
+    </div>
+
+    <!-- Owner count -->
+    <div class="owner-count">
+      <mat-icon>group</mat-icon>
+      <span>
+        <strong>{{ sticker.ownerCount }}</strong>
+        {{ sticker.ownerCount === 1 ? 'propietario' : 'propietarios' }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Card footer -->
+  <div class="card-footer">
+    <button mat-flat-button class="btn-trade" (click)="onTrade()">
+      <mat-icon>swap_horiz</mat-icon>
+      Intercambiar
+    </button>
+  </div>
+
+</div>

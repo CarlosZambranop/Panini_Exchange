@@ -1,0 +1,85 @@
+<app-navbar />
+
+<!-- ── Hero Banner ─────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">
+      <mat-icon>album</mat-icon>
+      Intercambia estampas
+    </div>
+    <h1>Explora tu colección <span class="gold">de estampas</span></h1>
+    <p>Descubre, busca y cambia estampas con otros coleccionistas.</p>
+    @if (!isLoggedIn) {
+      <a mat-flat-button routerLink="/registro" class="hero-cta">
+        <mat-icon>person_add</mat-icon>
+        Registrarse
+      </a>
+    }
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">{{ stickers.length }}</span>
+      <span class="stat-label">Estampas</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Rarezas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Filters ─────────────────────────────────────────────────────────── -->
+<section class="filters-bar">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Buscar</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()"
+           placeholder="Buscar jugador, equipo o país" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="rarity-field">
+    <mat-label>Rareza</mat-label>
+    <mat-select [(ngModel)]="selectedRarity" (ngModelChange)="applyFilters()">
+      @for (r of rarities; track r) {
+        <mat-option [value]="r">
+          {{ r === 'All' ? 'Todas' : r }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<!-- ── Gallery ─────────────────────────────────────────────────────────── -->
+<section class="gallery">
+
+  @if (isLoading) {
+    <div class="state-center">
+      <mat-spinner diameter="52" strokeWidth="4" />
+      <p>Cargando...</p>
+    </div>
+  } @else if (error) {
+    <div class="state-center error-state">
+      <mat-icon>wifi_off</mat-icon>
+      <p>No se pudieron cargar las estampas. Intenta nuevamente.</p>
+    </div>
+  } @else if (filtered.length === 0) {
+    <div class="state-center empty-state">
+      <mat-icon>search_off</mat-icon>
+      <h3>Sin resultados</h3>
+      <p>Prueba otra búsqueda o selecciona una categoría diferente.</p>
+    </div>
+  } @else {
+    <div class="cards-grid">
+      @for (s of filtered; track s.id) {
+        <app-sticker-card
+          [sticker]="s"
+          [isLoggedIn]="isLoggedIn"
+          (tradeStickerClicked)="onTrade($event)" />
+      }
+    </div>
+  }
+
+</section>
+
+<app-footer />

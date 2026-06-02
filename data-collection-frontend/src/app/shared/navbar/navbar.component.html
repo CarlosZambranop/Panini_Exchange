@@ -1,0 +1,26 @@
+<mat-toolbar class="navbar">
+  <a routerLink="/" class="brand">
+    <mat-icon>style</mat-icon>
+    <span>PaniniXchange</span>
+    <span class="brand-sub">Álbum digital</span>
+  </a>
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/" class="nav-link">
+    <mat-icon>home</mat-icon>
+    Inicio
+  </a>
+
+  @if (auth.isRegistered()) {
+    <button mat-button class="user-chip" (click)="logout()">
+      <mat-icon>account_circle</mat-icon>
+      Coleccionista
+      <mat-icon>logout</mat-icon>
+    </button>
+  } @else {
+    <a mat-button routerLink="/registro" class="btn-register">
+      <mat-icon>person_add</mat-icon>
+      Registrarse
+    </a>
+  }
+</mat-toolbar>

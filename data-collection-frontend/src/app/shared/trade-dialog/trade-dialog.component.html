@@ -1,0 +1,28 @@
+<div class="dialog-wrap">
+
+  <div class="success-icon">
+    <mat-icon>check_circle</mat-icon>
+  </div>
+
+  <h2 mat-dialog-title class="dialog-title">Operación exitosa</h2>
+
+  <mat-dialog-content class="dialog-content">
+    <p>
+      La solicitud de intercambio para
+      <strong>{{ data.sticker.playerName }}</strong>
+      se ha enviado correctamente.
+    </p>
+    <p class="sim-note">
+      <mat-icon>info</mat-icon>
+      Recibirás una confirmación cuando el otro coleccionista acepte.
+    </p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-flat-button class="btn-confirm" (click)="confirm()">
+      <mat-icon>done</mat-icon>
+      Cerrar
+    </button>
+  </mat-dialog-actions>
+
+</div>

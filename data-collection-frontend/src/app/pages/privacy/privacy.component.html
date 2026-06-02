@@ -1,0 +1,109 @@
+<app-navbar />
+
+<main class="privacy-page">
+  <div class="privacy-container">
+
+    <div class="privacy-header">
+      <div class="header-icon"><mat-icon>policy</mat-icon></div>
+      <h1>Política de Privacidad</h1>
+      <p class="subtitle">
+        Tratamiento de Datos Personales — <strong>Ley 1581 de 2012</strong> &amp; Decreto 1377 de 2013 — Colombia
+      </p>
+      <span class="date">Última actualización: {{ today | date:'longDate' }}</span>
+    </div>
+
+    <article class="privacy-body">
+
+      <section>
+        <h2><mat-icon inline>info</mat-icon> 1. Responsable del Tratamiento</h2>
+        <p>
+          <strong>DataColecta S.A.S.</strong>, con domicilio en la ciudad de Bogotá D.C., Colombia,
+          es el responsable del tratamiento de los datos personales recolectados a través de esta plataforma.
+          Contacto: <a href="mailto:contacto@datacolecta.co">contacto&#64;datacolecta.co</a> — Tel. +57 (1) 234 5678.
+        </p>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>database</mat-icon> 2. Datos Recolectados</h2>
+        <p>Se recolectan los siguientes datos personales:</p>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Correo electrónico</li>
+          <li>Número de teléfono</li>
+          <li>Ciudad de residencia</li>
+          <li>Comentarios opcionales</li>
+          <li>Dirección IP y fecha/hora de registro</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>track_changes</mat-icon> 3. Finalidades del Tratamiento</h2>
+        <ul>
+          <li>Registro e identificación del usuario.</li>
+          <li>Comunicaciones relacionadas con el servicio.</li>
+          <li>Cumplimiento de obligaciones legales y contractuales.</li>
+          <li>Mejora continua de la plataforma y análisis estadístico.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>gavel</mat-icon> 4. Base Legal</h2>
+        <p>
+          El tratamiento de datos se realiza con base en el <strong>consentimiento libre, previo, expreso e informado</strong>
+          del titular, de conformidad con la Ley 1581 de 2012, su Decreto Reglamentario 1377 de 2013 y
+          las instrucciones de la Superintendencia de Industria y Comercio (SIC).
+        </p>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>verified_user</mat-icon> 5. Derechos del Titular</h2>
+        <p>El titular de los datos tiene derecho a:</p>
+        <ul>
+          <li><strong>Conocer</strong> los datos que reposan en nuestras bases de datos.</li>
+          <li><strong>Actualizar</strong> o rectificar datos inexactos o incompletos.</li>
+          <li><strong>Suprimir</strong> los datos cuando sean innecesarios, excesivos o tratados sin autorización.</li>
+          <li><strong>Revocar</strong> la autorización otorgada en cualquier momento.</li>
+          <li><strong>Presentar quejas</strong> ante la Superintendencia de Industria y Comercio.</li>
+        </ul>
+        <p>Para ejercer estos derechos comuníquese a: <a href="mailto:contacto@datacolecta.co">contacto&#64;datacolecta.co</a></p>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>security</mat-icon> 6. Seguridad</h2>
+        <p>
+          Adoptamos medidas técnicas, administrativas y humanas para proteger sus datos contra acceso no autorizado,
+          pérdida, alteración o divulgación. Los datos se almacenan cifrados en servidores seguros.
+        </p>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>share</mat-icon> 7. Transferencia de Datos</h2>
+        <p>
+          Los datos no serán compartidos con terceros sin el consentimiento del titular,
+          salvo obligación legal. No se realizan transferencias internacionales de datos.
+        </p>
+      </section>
+
+      <section>
+        <h2><mat-icon inline>update</mat-icon> 8. Vigencia</h2>
+        <p>
+          Esta política rige desde la fecha de aceptación por parte del usuario y permanecerá vigente
+          mientras subsista la relación entre las partes o las obligaciones legales lo requieran.
+        </p>
+      </section>
+
+    </article>
+
+    <div class="privacy-actions">
+      <a mat-raised-button routerLink="/registro" class="btn-primary">
+        <mat-icon>check_circle</mat-icon> Aceptar y Registrarme
+      </a>
+      <a mat-stroked-button routerLink="/" class="btn-secondary">
+        <mat-icon>home</mat-icon> Volver al Inicio
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<app-footer />

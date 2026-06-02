@@ -1,0 +1,57 @@
+<div class="dialog-wrap">
+
+  <div class="dialog-icon">
+    <mat-icon>privacy_tip</mat-icon>
+  </div>
+
+  <h2 mat-dialog-title class="dialog-title">Advertencia educativa</h2>
+
+  <mat-dialog-content class="dialog-content">
+
+    <div class="highlight-box">
+      <mat-icon>school</mat-icon>
+      <span>Importante</span>
+    </div>
+
+    <p>Gracias por usar PaniniXchange.</p>
+
+    <p>Este sistema es educativo y no debe usarse para compartir datos personales sensibles.</p>
+
+    <p>Solo se almacena el estado de registro; no guardamos tus datos personales.</p>
+
+    <p>Antes de continuar, verifica que comprendes las siguientes recomendaciones:</p>
+
+    <ul class="checklist">
+      <li>
+        <mat-icon>check_circle_outline</mat-icon>
+        <span>No compartas contraseñas ni información bancaria.</span>
+      </li>
+      <li>
+        <mat-icon>check_circle_outline</mat-icon>
+        <span>Usa un correo válido para recibir notificaciones.</span>
+      </li>
+      <li>
+        <mat-icon>check_circle_outline</mat-icon>
+        <span>Respeta las normas de uso y privacidad.</span>
+      </li>
+    </ul>
+
+    <div class="confirm-box">
+      <mat-icon>warning_amber</mat-icon>
+      <p>Al aceptar, confirmas que entiendes las condiciones educativas.</p>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-flat-button class="btn-accept" (click)="accept()">
+      <mat-icon>thumb_up</mat-icon>
+      Aceptar
+    </button>
+    <button mat-stroked-button class="btn-learn" (click)="learnMore()">
+      <mat-icon>open_in_new</mat-icon>
+      Más información
+    </button>
+  </mat-dialog-actions>
+
+</div>

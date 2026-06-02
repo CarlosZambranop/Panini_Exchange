@@ -1,0 +1,146 @@
+<app-navbar />
+
+<main class="detail-page">
+
+  <!-- Not found state -->
+  @if (notFound) {
+    <div class="not-found">
+      <mat-icon>search_off</mat-icon>
+      <h2>Estampa no encontrada</h2>
+      <p>La estampa que buscas no existe.</p>
+      <button mat-flat-button class="btn-back" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> Regresar
+      </button>
+    </div>
+  }
+
+  <!-- Sticker detail -->
+  @if (sticker && !notFound) {
+    <div class="breadcrumb">
+      <button mat-button class="back-btn" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Regresar
+      </button>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{{ sticker.playerName }}</span>
+    </div>
+
+    <div class="detail-layout">
+
+      <!-- LEFT — Sticker card display -->
+      <aside class="card-side">
+        <div class="sticker-card-big" [style.background]="rarityGradient[sticker.rarity]">
+          @if (sticker.rarity === 'Legend' || sticker.rarity === 'Epic') {
+            <div class="shimmer"></div>
+          }
+          <div class="card-num">#{{ stickerNumber }}</div>
+          <div class="card-big-emoji">⚽</div>
+          <div class="card-player">{{ sticker.playerName }}</div>
+          <div class="card-team">{{ sticker.flag }} {{ sticker.team }}</div>
+          <div class="rarity-pill"
+               [style.background]="rarityColor[sticker.rarity] + '33'"
+               [style.border]="'1px solid ' + rarityColor[sticker.rarity] + '88'"
+               [style.color]="rarityColor[sticker.rarity]">
+            {{ sticker.rarity }}
+          </div>
+        </div>
+
+        <!-- Action button -->
+        <button mat-flat-button class="btn-want" (click)="onWant()">
+          <mat-icon>{{ isRegistered ? 'swap_horiz' : 'lock' }}</mat-icon>
+          {{ isRegistered ? 'Solicitar intercambio' : 'Regístrate para intercambiar' }}
+        </button>
+
+        @if (!isRegistered) {
+          <p class="login-hint">
+            <mat-icon>info</mat-icon>
+            <a routerLink="/registro">Regístrate</a>
+            para intercambiar esta estampa.
+          </p>
+        }
+      </aside>
+
+      <!-- RIGHT — Player info + owners -->
+      <section class="info-side">
+
+        <div class="player-header">
+          <h1>{{ sticker.playerName }}</h1>
+          <span class="rarity-badge"
+                [style.color]="rarityColor[sticker.rarity]"
+                [style.border-color]="rarityColor[sticker.rarity] + '55'">
+            {{ sticker.rarity }}
+          </span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <mat-icon>shield</mat-icon>
+            <div>
+              <span class="stat-label">Equipo</span>
+              <span class="stat-value">{{ sticker.team }}</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <mat-icon>sports_soccer</mat-icon>
+            <div>
+              <span class="stat-label">Posición</span>
+              <span class="stat-value">{{ sticker.position }}</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="flag-big">{{ sticker.flag }}</span>
+            <div>
+              <span class="stat-label">Nacionalidad</span>
+              <span class="stat-value">{{ sticker.nationality }}</span>
+            </div>
+          </div>
+          <div class="stat-item stat-owners">
+            <mat-icon>group</mat-icon>
+            <div>
+              <span class="stat-label">Propietarios</span>
+              <span class="stat-value owners-count">
+                {{ sticker.ownerCount }} {{ sticker.ownerCount === 1 ? 'coleccionista' : 'coleccionistas' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="owners-section">
+          <h3 class="section-title">
+            <mat-icon>people</mat-icon>
+            Coleccionistas
+          </h3>
+
+          @if (sticker.owners.length === 0) {
+            <div class="no-owners">
+              <mat-icon>inbox</mat-icon>
+              <p>No hay coleccionistas registrados todavía.</p>
+            </div>
+          } @else {
+            <div class="owners-list">
+              @for (owner of sticker.owners; track owner.displayName) {
+                <div class="owner-row">
+                  <div class="owner-avatar">{{ owner.displayName.charAt(0) }}</div>
+                  <div class="owner-info">
+                    <span class="owner-name">{{ owner.displayName }}</span>
+                    <span class="owner-meta">
+                      <mat-icon>location_on</mat-icon>{{ owner.city }}
+                    </span>
+                  </div>
+                  <span class="owner-since">
+                    <mat-icon>calendar_today</mat-icon>
+                    {{ owner.ownedSince | date:'mediumDate' }}
+                  </span>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+      </section>
+    </div>
+  }
+
+</main>
+
+<app-footer />

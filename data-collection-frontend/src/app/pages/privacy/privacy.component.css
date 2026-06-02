@@ -1,0 +1,94 @@
+.privacy-page {
+  min-height: 100vh;
+  background: linear-gradient(150deg, #0d0d1a 0%, #1a1a3e 50%, #0d0d1a 100%);
+  padding: 60px 20px 80px;
+}
+
+.privacy-container {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* ─── Header ─── */
+.privacy-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.header-icon {
+  width: 72px; height: 72px;
+  background: rgba(124,77,255,.18);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.header-icon mat-icon { font-size: 36px; height: 36px; width: 36px; color: #7c4dff; }
+
+.privacy-header h1 { color: #fff; font-size: 2rem; font-weight: 800; margin: 0 0 10px; }
+.subtitle { color: rgba(255,255,255,.65); font-size: 1rem; margin: 0 0 12px; }
+.subtitle strong { color: #a78bfa; }
+.date { display: inline-block; font-size: .8rem; color: rgba(255,255,255,.4); }
+
+/* ─── Body ─── */
+.privacy-body {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 20px;
+  padding: 44px 48px;
+  margin-bottom: 36px;
+}
+
+section { margin-bottom: 36px; }
+section:last-child { margin-bottom: 0; }
+
+h2 {
+  color: #a78bfa;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(124,77,255,.2);
+}
+h2 mat-icon { font-size: 18px; color: #7c4dff; }
+
+p, li {
+  color: rgba(255,255,255,.7);
+  font-size: .92rem;
+  line-height: 1.8;
+}
+p { margin: 0 0 10px; }
+ul { padding-left: 20px; margin: 0 0 10px; }
+li { margin-bottom: 4px; }
+a { color: #7c4dff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { color: rgba(255,255,255,.9); }
+
+/* ─── Actions ─── */
+.privacy-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: linear-gradient(90deg, #7c4dff, #651fff) !important;
+  color: #fff !important;
+  border-radius: 50px !important;
+  padding: 8px 28px !important;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(124,77,255,.4) !important;
+}
+.btn-secondary {
+  color: rgba(255,255,255,.8) !important;
+  border-color: rgba(255,255,255,.25) !important;
+  border-radius: 50px !important;
+  padding: 8px 28px !important;
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: #7c4dff !important; color: #a78bfa !important; }
+
+@media (max-width: 600px) {
+  .privacy-body { padding: 28px 20px; }
+}
