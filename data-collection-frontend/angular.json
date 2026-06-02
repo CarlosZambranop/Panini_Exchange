@@ -30,6 +30,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/Panini_Exchange/",
+              "outputPath": "dist/data-collection-frontend",
               "budgets": [
                 {
                   "type": "initial",
