@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
@@ -12,6 +12,7 @@ import { StickerService } from '../../services/sticker.service';
 import { AuthService } from '../../services/auth.service';
 import { Sticker, RARITY_COLOR, RARITY_GRADIENT } from '../../models/sticker.model';
 import { TradeDialogComponent } from '../../shared/trade-dialog/trade-dialog.component';
+import { RegisterRequiredDialogComponent } from '../../shared/register-required-dialog/register-required-dialog.component';
 
 @Component({
   selector: 'app-sticker-detail',
@@ -22,8 +23,10 @@ import { TradeDialogComponent } from '../../shared/trade-dialog/trade-dialog.com
     MatButtonModule,
     MatIconModule,
     MatChipsModule,
+    MatDialogModule,
     NavbarComponent,
     FooterComponent,
+    RegisterRequiredDialogComponent,
   ],
   templateUrl: './sticker-detail.component.html',
   styleUrls: ['./sticker-detail.component.css']
@@ -60,9 +63,21 @@ export class StickerDetailComponent implements OnInit {
 
   onWant(): void {
     if (!this.authService.isRegistered()) {
-      this.router.navigate(['/registro']);
+      const ref = this.dialog.open(RegisterRequiredDialogComponent, {
+        panelClass: 'dark-dialog',
+        width: '520px',
+        disableClose: true,
+      });
+
+      ref.afterClosed().subscribe(result => {
+        if (result === 'register') {
+          this.router.navigate(['/register']);
+        }
+      });
+
       return;
     }
+
     if (!this.sticker) return;
     const ref = this.dialog.open(TradeDialogComponent, {
       data: { sticker: this.sticker },

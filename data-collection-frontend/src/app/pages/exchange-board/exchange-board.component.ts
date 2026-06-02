@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { StickerCardComponent } from '../../shared/sticker-card/sticker-card.component';
 import { TradeDialogComponent } from '../../shared/trade-dialog/trade-dialog.component';
+import { RegisterRequiredDialogComponent } from '../../shared/register-required-dialog/register-required-dialog.component';
 import { PlayerService } from '../../services/player.service';
 import { AuthService } from '../../services/auth.service';
 import { Sticker, Rarity } from '../../models/sticker.model';
@@ -34,6 +35,7 @@ import { Sticker, Rarity } from '../../models/sticker.model';
     NavbarComponent,
     FooterComponent,
     StickerCardComponent,
+    RegisterRequiredDialogComponent,
   ],
   templateUrl: './exchange-board.component.html',
   styleUrls: ['./exchange-board.component.css']
@@ -42,6 +44,7 @@ export class ExchangeBoardComponent implements OnInit {
   private playerService = inject(PlayerService);
   private authService   = inject(AuthService);
   private dialog        = inject(MatDialog);
+  private router        = inject(Router);
   private cdr           = inject(ChangeDetectorRef);
 
   stickers: Sticker[] = [];
@@ -102,9 +105,20 @@ export class ExchangeBoardComponent implements OnInit {
 
   onTrade(sticker: Sticker): void {
     if (!this.isLoggedIn) {
-      window.location.href = '/registro';
+      const ref = this.dialog.open(RegisterRequiredDialogComponent, {
+        panelClass: 'dark-dialog',
+        width: '520px',
+        disableClose: true,
+      });
+
+      ref.afterClosed().subscribe(result => {
+        if (result === 'register') {
+          this.router.navigate(['/register']);
+        }
+      });
       return;
     }
+
     this.dialog.open(TradeDialogComponent, {
       data: { sticker },
       panelClass: 'dark-dialog',

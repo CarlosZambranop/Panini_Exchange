@@ -8,6 +8,11 @@ export const routes: Routes = [
         .then(m => m.ExchangeBoardComponent)
   },
   {
+    path: 'register',
+    redirectTo: 'registro',
+    pathMatch: 'full'
+  },
+  {
     path: 'registro',
     loadComponent: () =>
       import('./pages/register/register.component')
